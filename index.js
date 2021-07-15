@@ -49,7 +49,7 @@ $(".btnPlus").click(function(){
     var parentInt = parentPrevVal;
     var parentNewVal = ( ( (parentInt * 100) + spacerVal) / 100);
     
-    var plusNewNumber = Number(Math.round(parentNewVal+'e3')+'e-3');
+    var plusNewNumber = Number(Math.round(parentNewVal+'e5')+'e-5');
     $('.thisRoomSpace[data-parent=' + currentParent + ']').text(plusNewNumber);
 
 
@@ -87,7 +87,7 @@ $(".btnPlus").click(function(){
     let boxVal = Number($('.thisRoomSpace[data-parent=boxesShow]').text());
     let officeVal = Number($('.thisRoomSpace[data-parent=officeShow]').text());
     var newNeedVal = Number(Math.round((livingVal + mainVal + kitchenVal +
-        kidsVal + whiteVal + sportsVal + boxVal + officeVal)+'e3')+'e-3');
+        kidsVal + whiteVal + sportsVal + boxVal + officeVal)+'e5')+'e-5');
     $("#willNeed").val(newNeedVal);
 
     // setting store value 
@@ -156,10 +156,13 @@ $(".btnMin").click(function(){
     var parentInt = parentPrevVal;
     if((intVal > 0) ){
         var parentNewVal = (((parentInt * 100) - spacerVal) / 100);
-        var minusNewNumber = Number(Math.round(parentNewVal+'e3')+'e-3');
+        var minusNewNumber = Number(Math.round(parentNewVal+'e5')+'e-5');
         $('.thisRoomSpace[data-parent=' + currentParent + ']').text(minusNewNumber);
     }
-    if(intVal === 1){
+
+    //making the room value 0 if any nan value occurs
+    let thisRoomPrevVal = Number($('.thisRoomSpace[data-parent=' + currentParent + ']').text());
+    if(isNaN(thisRoomPrevVal)){
         $('.thisRoomSpace[data-parent=' + currentParent + ']').text(0);
     }
 
@@ -183,7 +186,7 @@ $(".btnMin").click(function(){
     let boxVal = Number($('.thisRoomSpace[data-parent=boxesShow]').text());
     let officeVal = Number($('.thisRoomSpace[data-parent=officeShow]').text());
     var newNeedVal = Number(Math.round((livingVal + mainVal + kitchenVal +
-        kidsVal + whiteVal + sportsVal + boxVal + officeVal)+'e3')+'e-3');
+        kidsVal + whiteVal + sportsVal + boxVal + officeVal)+'e5')+'e-5');
     $("#willNeed").val(newNeedVal);
 
 
@@ -243,4 +246,6 @@ $(".btnClose").click(function(){
 });
 
 
-
+$(".newVal").val(0);
+$("#willNeed").val(0);
+$("#storeId").val(0);
