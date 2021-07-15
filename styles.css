@@ -2551,4 +2551,6 @@ h4+form {
     float: right;
 }
 
-
+.newVal {
+    height: 25px !important;
+}
